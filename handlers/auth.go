@@ -105,7 +105,6 @@ func (h *handlerAuth) Login(w http.ResponseWriter, r *http.Request) {
 	}
 
 	//Generate token for transaction and login
-
 	claims := jwt.MapClaims{}
 	claims["id"] = user.ID
 	claims["exp"] = time.Now().Add(time.Hour * 2).Unix() // In 2 hours, token will be expire

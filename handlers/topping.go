@@ -10,6 +10,7 @@ import (
 	"strconv"
 
 	"github.com/go-playground/validator/v10"
+	"github.com/golang-jwt/jwt/v4"
 	"github.com/gorilla/mux"
 )
 
@@ -59,6 +60,10 @@ func (h *handlerTopping) GetTopping(w http.ResponseWriter, r *http.Request) {
 func (h *handlerTopping) CreateTopping(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 
+	// get data user token
+	userInfo := r.Context().Value("userInfo").(jwt.MapClaims)
+	userId := int(userInfo["id"].(float64))
+
 	dataContex := r.Context().Value("dataFile")
 	filepath := dataContex.(string)
 
@@ -81,9 +86,10 @@ func (h *handlerTopping) CreateTopping(w http.ResponseWriter, r *http.Request) {
 	}
 
 	topping := models.Topping{
-		Title: request.Title,
-		Price: request.Price,
-		Image: request.Image,
+		Title:  request.Title,
+		Price:  request.Price,
+		Image:  request.Image,
+		UserID: userId,
 	}
 
 	// err := mysql.DB.Create(&product).Error

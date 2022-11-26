@@ -20,14 +20,14 @@ func RepositoryTopping(db *gorm.DB) *repository {
 
 func (r *repository) FindToppings() ([]models.Topping, error) {
 	var toppings []models.Topping
-	err := r.db.Find(&toppings).Error
+	err := r.db.Preload("User").Find(&toppings).Error
 
 	return toppings, err
 }
 
 func (r *repository) GetTopping(ID int) (models.Topping, error) {
 	var topping models.Topping
-	err := r.db.First(&topping, ID).Error
+	err := r.db.Preload("User").First(&topping, ID).Error
 
 	return topping, err
 }

@@ -15,9 +15,3 @@ type UpdateProductRequest struct {
 	// Qty   int    `json:"qty" form:"qty" gorm:"type: int"`
 	// CategoryID int    `json:"category_id" form:"category_id" gorm:"type: int"`
 }
-
-type ProductResponse struct {
-	Title string `json:"title" form:"title"`
-	Price int    `json:"price" form:"price"`
-	Image string `json:"image" form:"image"`
-}

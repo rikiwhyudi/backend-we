@@ -9,6 +9,18 @@ type User struct {
 	Password string `json:"-" gorm:"type: varchar(255)"`
 	Image    string `json:"image" gorm:"type: varchar(255)"`
 	// Profile   ProfileResponse `json:"-"`
+	// UserProduct []ProductUserResponse `json:"product"`
 	CreatedAt time.Time `json:"-"`
 	UpdatedAt time.Time `json:"-"`
+}
+
+type UsersProfileResponse struct {
+	ID    int    `json:"id"`
+	Name  string `json:"fullname"`
+	Email string `json:"email"`
+	Image string `json:"image"`
+}
+
+func (UsersProfileResponse) TableName() string {
+	return "users"
 }
