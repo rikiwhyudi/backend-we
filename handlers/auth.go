@@ -57,7 +57,6 @@ func (h *handlerAuth) Register(w http.ResponseWriter, r *http.Request) {
 		Name:     request.Name,
 		Email:    request.Email,
 		Password: password,
-		// Status:   "customer",
 	}
 
 	_, err = h.AuthRepository.Register(user)
@@ -66,13 +65,6 @@ func (h *handlerAuth) Register(w http.ResponseWriter, r *http.Request) {
 		response := dto.ErrorResult{Code: http.StatusInternalServerError, Message: err.Error()}
 		json.NewEncoder(w).Encode(response)
 	}
-
-	// createProfile := models.Profile{
-	// 	ID:     data.ID,
-	// 	UserID: data.ID,
-	// }
-
-	// h.AuthRepository.a(createProfile)
 
 	RegisterResponses := authdto.RegisterResponse{
 		Name: user.Name,
@@ -93,8 +85,6 @@ func (h *handlerAuth) Login(w http.ResponseWriter, r *http.Request) {
 		json.NewEncoder(w).Encode(response)
 		return
 	}
-
-	//Path Image
 
 	// Check email for auth
 	user, err := h.AuthRepository.Login(request.Email)

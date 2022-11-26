@@ -5,7 +5,7 @@ type Product struct {
 	Title string `json:"title" form:"title" gorm:"type: varchar(255)"`
 	Price int    `json:"price" form:"price" gorm:"type: int"`
 	Image string `json:"image" form:"image" gorm:"type: varchar(255)"`
-	Qty   int    `json:"-" form:"qty"`
+	// Qty   int    `json:"-" form:"qty"`
 }
 
 type ProductResponse struct {
@@ -20,7 +20,7 @@ type ProductUserResponse struct {
 	Title string `json:"title"`
 	Price int    `json:"price"`
 	Image string `json:"image"`
-	Qty   int    `json:"qty"`
+	// Qty   int    `json:"qty"`
 }
 
 func (ProductResponse) TableName() string {
