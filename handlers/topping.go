@@ -7,6 +7,7 @@ import (
 	"backend-WE/repositories"
 	"encoding/json"
 	"net/http"
+	"os"
 	"strconv"
 
 	"github.com/go-playground/validator/v10"
@@ -33,6 +34,11 @@ func (h *handlerTopping) FindToppings(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	// Create Embed Path File on Image property here ...
+	for i, p := range toppings {
+		toppings[i].Image = os.Getenv("PATH_FILE") + p.Image
+	}
+
 	w.WriteHeader(http.StatusOK)
 	response := dto.SuccessResult{Status: "success", Data: toppings}
 	json.NewEncoder(w).Encode(response)
@@ -51,6 +57,9 @@ func (h *handlerTopping) GetTopping(w http.ResponseWriter, r *http.Request) {
 		json.NewEncoder(w).Encode(response)
 		return
 	}
+
+	// Create Embed Path File on Image property here ...
+	topping.Image = os.Getenv("PATH_FILE") + topping.Image
 
 	w.WriteHeader(http.StatusOK)
 	response := dto.SuccessResult{Status: "success", Data: convertResponseTopping(topping)}
@@ -182,10 +191,11 @@ func (h *handlerTopping) DeleteTopping(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(response)
 }
 
-func convertResponseTopping(u models.Topping) models.ToppingResponse {
-	return models.ToppingResponse{
+func convertResponseTopping(u models.Topping) toppingdto.ToppingResponse {
+	return toppingdto.ToppingResponse{
 		Title: u.Title,
 		Price: u.Price,
 		Image: u.Image,
+		// Qty: u.Qty,
 	}
 }

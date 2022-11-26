@@ -1,7 +1,23 @@
 package productdto
 
 type ProductResponse struct {
-	Title string `json:"title" form:"title"`
-	Price int    `json:"price" form:"price"`
-	Image string `json:"image" form:"image"`
+	ID    int    `json:"id"`
+	Title string `json:"title"`
+	Price int    `json:"price"`
+	Image string `json:"image"`
+}
+
+type ProductUserResponse struct {
+	ID    int    `json:"id"`
+	Title string `json:"title"`
+	Price int    `json:"price"`
+	Image string `json:"image"`
+}
+
+func (ProductResponse) TableName() string {
+	return "products"
+}
+
+func (ProductUserResponse) TableName() string {
+	return "products"
 }

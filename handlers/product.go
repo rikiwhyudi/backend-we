@@ -1,16 +1,14 @@
 package handlers
 
 import (
-	"encoding/json"
-	"fmt"
-	"net/http"
-
-	"os"
-
 	productdto "backend-WE/dto/product"
 	dto "backend-WE/dto/result"
 	"backend-WE/models"
 	"backend-WE/repositories"
+	"encoding/json"
+	"fmt"
+	"net/http"
+	"os"
 	"strconv"
 
 	"github.com/go-playground/validator/v10"

@@ -13,14 +13,3 @@ type User struct {
 	CreatedAt time.Time `json:"-"`
 	UpdatedAt time.Time `json:"-"`
 }
-
-type UsersProfileResponse struct {
-	ID    int    `json:"id"`
-	Name  string `json:"fullname"`
-	Email string `json:"email"`
-	Image string `json:"image"`
-}
-
-func (UsersProfileResponse) TableName() string {
-	return "users"
-}

@@ -1,36 +1,15 @@
 package models
 
+import (
+	usersdto "backend-WE/dto/users"
+)
+
 type Topping struct {
-	ID     int                  `json:"id" gorm:"primary_key:auto_increment"`
-	Title  string               `json:"title" form:"title" gorm:"type: varchar(255)"`
-	Price  int                  `json:"price" form:"price" gorm:"type: int"`
-	Qty    int                  `json:"-" form:"qty"`
-	Image  string               `json:"image" form:"image" gorm:"type: varchar(255)"`
-	UserID int                  `json:"-" form:"user_id"`
-	User   UsersProfileResponse `json:"-" gorm:"constraint:OnUpdate:CASCADE,OnDelete:CASCADE;"`
-}
-
-type ToppingResponse struct {
-	ID    int    `json:"id"`
-	Title string `json:"title"`
-	Price int    `json:"price"`
-	Qty   int    `json:"-" form:"qty"`
-	Image string `json:"image"`
-}
-
-type ToppingUserResponse struct {
-	ID     int    `json:"id"`
-	Title  string `json:"title"`
-	Price  int    `json:"price"`
-	Qty    int    `json:"-" form:"qty"`
-	Image  string `json:"image"`
-	UserID int    `json:"-"`
-}
-
-func (ToppingResponse) TableName() string {
-	return "toppings"
-}
-
-func (ToppingUserResponse) TableName() string {
-	return "toppings"
+	ID     int                           `json:"id" gorm:"primary_key:auto_increment"`
+	Title  string                        `json:"title" form:"title" gorm:"type: varchar(255)"`
+	Price  int                           `json:"price" form:"price" gorm:"type: int"`
+	Qty    int                           `json:"-" form:"qty"`
+	Image  string                        `json:"image" form:"image" gorm:"type: varchar(255)"`
+	UserID int                           `json:"-" form:"user_id"`
+	User   usersdto.UsersProfileResponse `json:"-" gorm:"constraint:OnUpdate:CASCADE,OnDelete:CASCADE;"`
 }
